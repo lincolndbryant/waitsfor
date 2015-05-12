@@ -9,21 +9,21 @@ var rename      = require('gulp-rename');
 var uglify      = require('gulp-uglify');
 var tagVersion  = require('gulp-tag-version');
 var umd         = require('gulp-wrap-umd');
-
+var concat      = require('gulp-concat');
 
 // Variables
 var distDir = './dist';
 var pkg = require('./package.json');
 var banner = ['/*!', pkg.name, pkg.version, '*/\n'].join(' ');
 var umdOptions = {
-  exports: 'Drop',
-  namespace: 'Drop',
+  exports: 'waitsFor',
+  namespace: 'waitsFor',
   deps: [{
-    name: 'Tether',
-    globalName: 'Tether',
-    paramName: 'Tether',
-    amdName: 'tether',
-    cjsName: 'tether'
+    name: 'waitsFor',
+    globalName: 'waitsFor',
+    paramName: 'waitsFor',
+    amdName: 'waitsFor',
+    cjsName: 'waitsFor'
   }]
 };
 
@@ -42,6 +42,7 @@ gulp.task('js', ['clean'], function() {
     .pipe(header(banner))
 
     // Original
+    .pipe(concat('waitsfor.js'))
     .pipe(gulp.dest(distDir + '/js'))
 
     // Minified
@@ -69,11 +70,11 @@ for (var i = 0; i < VERSIONS.length; ++i){
 
 
 // Watch
-gulp.task('watch', ['js', 'css'], function() {
+gulp.task('watch', ['js'], function() {
   gulp.watch('./src/js/**/*', ['js']);
 });
 
 
 // Defaults
-gulp.task('default', ['build'])
+gulp.task('default', ['js'])
 

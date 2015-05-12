@@ -7,7 +7,6 @@
   ],
   "repository": "https://github.com/lincolndbryant/waitsfor",
   "scripts": {
-    "install": "bower install",
     "build": "gulp build"
   },
   "license": "MIT",
@@ -17,6 +16,7 @@
     "gulp": "^3.8.11",
     "gulp-babel": "^5.1.0",
     "gulp-bump": "^0.3.0",
+    "gulp-concat": "^2.5.2",
     "gulp-filter": "^2.0.2",
     "gulp-header": "^1.2.2",
     "gulp-rename": "^1.2.2",
