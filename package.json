@@ -7,7 +7,9 @@
   ],
   "repository": "https://github.com/lincolndbryant/waitsfor",
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp",
+    "install": "gulp",
+    "test": "gulp test"
   },
   "license": "MIT",
   "main": "src/waitsfor.js",
@@ -19,6 +21,7 @@
     "gulp-concat": "^2.5.2",
     "gulp-filter": "^2.0.2",
     "gulp-header": "^1.2.2",
+    "gulp-jasmine-phantom": "^1.1.3",
     "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^1.0.5",
     "gulp-tag-version": "^1.2.1",

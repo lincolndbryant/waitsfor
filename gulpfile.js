@@ -10,23 +10,17 @@ var uglify      = require('gulp-uglify');
 var tagVersion  = require('gulp-tag-version');
 var umd         = require('gulp-wrap-umd');
 var concat      = require('gulp-concat');
+var jasmine = require('gulp-jasmine-phantom');
 
 // Variables
 var distDir = './dist';
 var pkg = require('./package.json');
 var banner = ['/*!', pkg.name, pkg.version, '*/\n'].join(' ');
-var umdOptions = {
-  exports: 'waitsFor',
-  namespace: 'waitsFor',
-  deps: [{
-    name: 'waitsFor',
-    globalName: 'waitsFor',
-    paramName: 'waitsFor',
-    amdName: 'waitsFor',
-    cjsName: 'waitsFor'
-  }]
+var babelOptions = {
+  modules: 'umd',
+  sourceRoot: 'src',
+  moduleRoot: 'hubspot/waitsfor'
 };
-
 
 // Clean
 gulp.task('clean', function() {
@@ -37,8 +31,8 @@ gulp.task('clean', function() {
 // Javascript
 gulp.task('js', ['clean'], function() {
   gulp.src('./src/**/*.js')
-    .pipe(babel())
-    .pipe(umd(umdOptions))
+    .pipe(babel(babelOptions))
+    //.pipe(umd(umdOptions))
     .pipe(header(banner))
 
     // Original
@@ -68,13 +62,21 @@ for (var i = 0; i < VERSIONS.length; ++i){
   })(VERSIONS[i]);
 }
 
-
-// Watch
 gulp.task('watch', ['js'], function() {
   gulp.watch('./src/js/**/*', ['js']);
 });
 
+gulp.task('test', function() {
+  return gulp.src('spec/**/*.js')
+    .pipe(babel())
+    .pipe(jasmine({
+      integration: true,
+      quiet: true,
+      keepRunner: true,
+      vendor: ['node_modules/q/q.js', 'dist/js/waitsfor.js'],
+      includeStackTrace: true
+    }));
+});
 
-// Defaults
 gulp.task('default', ['js'])
 
