@@ -13,8 +13,6 @@ export function waitsFor(func, timeout) {
   deferred = Q.defer();
 
   (function doWaitsFor() {
-    console.log('now ' + (+(new Date)))
-    console.log('timeout ' + (started + timeout))
     if (calls > 0 && func.call(func)) {
       return deferred.resolve(true);
     } else if ((+(new Date)) > started + timeout) {
@@ -22,7 +20,6 @@ export function waitsFor(func, timeout) {
       return deferred.reject(timeout);
     } else {
       calls++;
-      console.log('calls ' + calls);
       return setTimeout(doWaitsFor, WAIT_INTERVAL, func);
     }
   })();
