@@ -94,5 +94,11 @@ gulp.task('test:phantom', function() {
     }));
 });
 
+gulp.task('bump', function(){
+  gulp.src('./package.json')
+    .pipe(bump())
+    .pipe(gulp.dest('./'));
+});
+
 gulp.task('default', ['js', 'test:unit']);
 

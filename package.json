@@ -1,17 +1,18 @@
 {
   "name": "waitsfor",
-  "version": "0.0.1",
-  "description": "",
-  "authors": [
-    "Lincoln Bryant <bryant.lincoln@gmail.com>"
-  ],
-  "repository": "https://github.com/lincolndbryant/waitsfor",
+  "version": "0.0.2",
+  "description": "Wait for truth of a condition using promises",
+  "author": "Lincoln Bryant <bryant.lincoln@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lincolndbryant/waitsfor.git"
+  },
   "scripts": {
     "build": "gulp",
     "install": "gulp",
     "test": "gulp test"
   },
-  "license": "MIT",
+  "license": "c",
   "main": "index",
   "devDependencies": {
     "del": "^1.1.1",
@@ -32,5 +33,16 @@
   "dependencies": {
     "babel": "^5.3.0",
     "q": "^1.4.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/lincolndbryant/waitsfor/issues"
+  },
+  "homepage": "https://github.com/lincolndbryant/waitsfor#readme",
+  "keywords": [
+    "jasmine",
+    "async",
+    "promise",
+    "Q",
+    "deferred"
+  ]
 }
