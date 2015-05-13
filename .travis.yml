@@ -1,0 +1,3 @@
+deploy:
+  provider: npm
+  email: "bryant.lincoln@gmail.com"
