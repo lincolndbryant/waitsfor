@@ -9,7 +9,6 @@
   },
   "scripts": {
     "build": "gulp",
-    "install": "gulp",
     "test": "gulp test"
   },
   "license": "c",

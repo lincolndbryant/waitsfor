@@ -94,6 +94,8 @@ gulp.task('test:phantom', function() {
     }));
 });
 
+gulp.task('test', ['test:unit', 'test:phantom']);
+
 gulp.task('bump', function(){
   gulp.src('./package.json')
     .pipe(bump())
