@@ -11,6 +11,7 @@ var tagVersion  = require('gulp-tag-version');
 var umd         = require('gulp-wrap-umd');
 var concat      = require('gulp-concat');
 var jasmine = require('gulp-jasmine-phantom');
+var extend = require('node.extend');
 
 // Variables
 var distDir = './dist';
@@ -66,17 +67,29 @@ gulp.task('watch', ['js'], function() {
   gulp.watch('./src/js/**/*', ['js']);
 });
 
-gulp.task('test', function() {
-  return gulp.src('spec/**/*.js')
-    .pipe(babel())
+var bundle = ['node_modules/q/q.js', 'dist/js/waitsfor.js'];
+var testBabelOptions = extend(babelOptions);
+
+gulp.task('test:unit', function() {
+  var src = ['babel/register', 'spec/unit.js']
+  return gulp.src(src)
     .pipe(jasmine({
-      integration: true,
-      quiet: true,
-      keepRunner: true,
-      vendor: ['node_modules/q/q.js', 'dist/js/waitsfor.js'],
+      keepRunner: './',
       includeStackTrace: true
     }));
 });
 
-gulp.task('default', ['js'])
+gulp.task('test:phantom', function() {
+  var src = ['spec/integration.js'];
+  return gulp.src(src)
+    .pipe(babel(testBabelOptions))
+    .pipe(gulp.dest(distDir + '/spec'))
+    .pipe(jasmine({
+      integration: true,
+      keepRunner: true,
+      includeStackTrace: true
+    }));
+});
+
+gulp.task('default', ['js']);
 
