@@ -1,3 +1,8 @@
+language: node_js
+node_js: '0.10'
+script:
+  - gulp
+  - gulp test
 deploy:
   provider: npm
   email: "bryant.lincoln@gmail.com"
