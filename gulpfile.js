@@ -44,6 +44,11 @@ gulp.task('js', ['clean'], function() {
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest(distDir + '/js'));
+
+  var specs = ['spec/unit.js', 'spec/integration.js'];
+  return gulp.src(specs)
+    .pipe(babel(testBabelOptions))
+    .pipe(gulp.dest(distDir + '/spec'))
 });
 
 
@@ -64,32 +69,30 @@ for (var i = 0; i < VERSIONS.length; ++i){
 }
 
 gulp.task('watch', ['js'], function() {
-  gulp.watch('./src/js/**/*', ['js']);
+  gulp.watch('src/**/*', ['js']);
 });
 
 var bundle = ['node_modules/q/q.js', 'dist/js/waitsfor.js'];
-var testBabelOptions = extend(babelOptions);
+var testBabelOptions = extend(babelOptions, {sourceMaps: 'inline'});
 
 gulp.task('test:unit', function() {
-  var src = ['babel/register', 'spec/unit.js']
+  var src = ['babel/register', 'spec/launch-unit.js']
   return gulp.src(src)
     .pipe(jasmine({
-      keepRunner: './',
       includeStackTrace: true
     }));
 });
 
 gulp.task('test:phantom', function() {
-  var src = ['spec/integration.js'];
+  var src = ['dist/spec/unit.js', 'dist/spec/integration.js'];
   return gulp.src(src)
-    .pipe(babel(testBabelOptions))
-    .pipe(gulp.dest(distDir + '/spec'))
     .pipe(jasmine({
+      vendor: bundle,
       integration: true,
-      keepRunner: true,
+      keepRunner: './',
       includeStackTrace: true
     }));
 });
 
-gulp.task('default', ['js']);
+gulp.task('default', ['js', 'test:unit']);
 
