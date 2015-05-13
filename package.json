@@ -1,6 +1,6 @@
 {
   "name": "waitsfor",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Wait for truth of a condition using promises",
   "author": "Lincoln Bryant <bryant.lincoln@gmail.com>",
   "repository": {
