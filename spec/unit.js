@@ -22,8 +22,9 @@ describe('waitsFor', () => {
     waitsFor.waitsFor(() => {
       return returnValue;
     }, {timeout: 100}).fail((err) => {
+      console.log('Timeout!!!');
       expect(err.name).toBe('Error');
-      return done();
+      done();
     });
   });
 });
