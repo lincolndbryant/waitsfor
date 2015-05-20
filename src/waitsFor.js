@@ -8,6 +8,7 @@ export function waitsFor(func, {timeout}={}) {
   if (!timeout) {
     timeout = TIMEOUT;
   }
+  console.log('Timeout!!', timeout)
   started = +(new Date);
   calls = 0;
   deferred = Q.defer();
