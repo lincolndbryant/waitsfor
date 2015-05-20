@@ -1,6 +1,4 @@
-// these run in node
+// for node tests, require our module (which registers babel require) then our unit tests
 
 require('../');
-Q = require('q');
-console.log(Q);
 require('./unit');

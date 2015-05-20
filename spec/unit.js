@@ -1,7 +1,7 @@
-// these run in node
+// these run in node and phantom
 
 if (typeof require !== 'undefined') {
-  global.waitsFor = require('../');
+  let waitsFor = require('../');
 }
 
 describe('waitsFor', () => {
