@@ -8,7 +8,7 @@
     "url": "git+https://github.com/lincolndbryant/waitsfor.git"
   },
   "scripts": {
-    "build": "gulp",
+    "prepublish": "gulp",
     "test": "gulp test"
   },
   "license": "c",
