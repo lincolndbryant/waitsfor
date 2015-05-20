@@ -21,8 +21,8 @@ describe('waitsFor', () => {
     var returnValue = false;
     waitsFor.waitsFor(() => {
       return returnValue;
-    }, {timeout: 100}).fail(() => {
-      expect(true).toBe(true);
+    }, {timeout: 100}).fail((err) => {
+      expect(err.name).toBe('Error');
       return done();
     });
   });
