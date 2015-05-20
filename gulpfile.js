@@ -87,7 +87,7 @@ gulp.task('test:phantom', ['js'], function() {
     .pipe(jasmine({
       vendor: bundle,
       integration: true,
-      keepRunner: './',
+      //keepRunner: './',
       includeStackTrace: true
     }));
 });
