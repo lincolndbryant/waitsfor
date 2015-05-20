@@ -18,9 +18,7 @@ var distDir = './dist';
 var pkg = require('./package.json');
 var banner = ['/*!', pkg.name, pkg.version, '*/\n'].join(' ');
 var babelOptions = {
-  modules: 'umd',
-  sourceRoot: 'src',
-  moduleRoot: 'hubspot/waitsfor'
+  modules: 'umd', moduleIds: true, getModuleId: function(name) { return name; }
 };
 
 // Clean
@@ -45,7 +43,9 @@ gulp.task('js', ['clean'], function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest(distDir + '/js'));
 
-  var specs = ['spec/unit.js', 'spec/integration.js'];
+  var specs = ['./spec/unit.js', '/.spec/integration.js'];
+  var testBabelOptions = extend({}, {sourceMaps: 'inline', modules: 'ignore', moduleIds: false});
+  console.log(testBabelOptions);
   return gulp.src(specs)
     .pipe(babel(testBabelOptions))
     .pipe(gulp.dest(distDir + '/spec'))
@@ -73,7 +73,6 @@ gulp.task('watch', ['js'], function() {
 });
 
 var bundle = ['node_modules/q/q.js', 'dist/js/waitsfor.js'];
-var testBabelOptions = extend(babelOptions, {sourceMaps: 'inline'});
 
 gulp.task('test:unit', function() {
   var src = ['babel/register', 'spec/launch-unit.js']
@@ -83,7 +82,7 @@ gulp.task('test:unit', function() {
     }));
 });
 
-gulp.task('test:phantom', function() {
+gulp.task('test:phantom', ['js'], function() {
   var src = ['dist/spec/unit.js', 'dist/spec/integration.js'];
   return gulp.src(src)
     .pipe(jasmine({
@@ -102,5 +101,5 @@ gulp.task('bump', function(){
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', ['js', 'test:unit']);
+gulp.task('default', ['js']);
 
