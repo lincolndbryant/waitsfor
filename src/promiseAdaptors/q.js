@@ -1,4 +1,4 @@
-import Q from 'Q'
+import Q from 'q'
 import {waitsFor} from '../waitsFor'
 
 let Promise = Object.getPrototypeOf(Q.defer().promise);
