@@ -45,7 +45,6 @@ gulp.task('js', ['clean'], function() {
 
   var specs = ['./spec/unit.js', '/.spec/integration.js'];
   var testBabelOptions = extend({}, {sourceMaps: 'inline', modules: 'ignore', moduleIds: false});
-  console.log(testBabelOptions);
   return gulp.src(specs)
     .pipe(babel(testBabelOptions))
     .pipe(gulp.dest(distDir + '/spec'))
