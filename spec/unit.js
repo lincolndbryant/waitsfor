@@ -1,7 +1,7 @@
 // these run in node and phantom
 
 if (typeof require !== 'undefined') {
-  let waitsFor = require('../');
+  var waitsFor = require('../');
 }
 
 describe('waitsFor', () => {
