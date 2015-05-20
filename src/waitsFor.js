@@ -1,4 +1,4 @@
-import Q from 'Q'
+import Q from 'q'
 
 const WAIT_INTERVAL = 50;
 const TIMEOUT = 5000;
