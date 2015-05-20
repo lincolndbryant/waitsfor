@@ -1,7 +1,7 @@
 // these run in node
 
-if (typeof require != 'undefined') {
-  var waitsFor = require('../');
+if (typeof require !== 'undefined') {
+  global.waitsFor = require('../');
 }
 
 describe('waitsFor', () => {
@@ -21,7 +21,7 @@ describe('waitsFor', () => {
     var returnValue = false;
     waitsFor.waitsFor(() => {
       return returnValue;
-    }, 100).fail(() => {
+    }, {timeout: 100}).fail(() => {
       expect(true).toBe(true);
       return done();
     });
