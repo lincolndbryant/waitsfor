@@ -1,7 +1,7 @@
 # waitsfor
 Wait for truth of a condition using promises
 
-![build](https://travis-ci.org/lincolndbryant/waitsfor.svg?branch=master)
+[![build](https://travis-ci.org/lincolndbryant/waitsfor.svg?branch=master)](https://travis-ci.org/lincolndbryant/waitsfor)
 
 ## Usage (directly as a global)
 ```
