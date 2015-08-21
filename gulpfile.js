@@ -18,7 +18,10 @@ var distDir = './dist';
 var pkg = require('./package.json');
 var banner = ['/*!', pkg.name, pkg.version, '*/\n'].join(' ');
 var babelOptions = {
-  modules: 'umd', moduleIds: true, getModuleId: function(name) { return name; }
+  modules: 'umd',
+  moduleIds: true,
+  moduleRoot: 'waitsfor',
+  globalModuleRoot: true
 };
 
 // Clean

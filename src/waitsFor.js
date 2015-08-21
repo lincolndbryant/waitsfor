@@ -4,11 +4,11 @@ const WAIT_INTERVAL = 50;
 const TIMEOUT = 5000;
 
 export function waitsFor(func, {timeout}={}) {
-  var calls, deferred, dowaitsFor, started;
+  var calls, deferred, started;
   if (!timeout) {
     timeout = TIMEOUT;
   }
-  console.log('Timeout!!', timeout)
+
   started = +(new Date);
   calls = 0;
   deferred = Q.defer();
@@ -17,7 +17,7 @@ export function waitsFor(func, {timeout}={}) {
     if (calls > 0 && func.call(func)) {
       return deferred.resolve(true);
     } else if ((+(new Date)) > started + timeout) {
-      let timeoutError = new Error("Timeout waiting for " + (func.toString()));
+      let timeoutError = new Error("[waitsFor] Timeout waiting for " + (func.toString()));
       return deferred.reject(timeoutError);
     } else {
       calls++;

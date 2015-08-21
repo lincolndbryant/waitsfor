@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "dependencies": {
+    "bender-repackage": "0.0.8",
+    "bower": "^1.4.1",
+    "waitsfor": "0.0.6"
+  },
+  "bender-repackage": {
+    "static_conf": {
+      "name": "waitsfor",
+      "majorVersion": 1
+    },
+    "devFiles": [
+      {
+        "cwd": "node_modules/waitsfor",
+        "src": "dist/js/waitsfor.js"
+      }
+    ],
+    "compressedFiles": [
+      {
+        "cwd": "node_modules/waitsfor",
+        "src": "dist/js/waitsfor.min.js"
+      }
+    ],
+    "hubspotDefine": {
+      "waitsfor": {
+        "modules": {
+          "waitsfor": "waitsFor"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "repackage": "bender-repackage install",
+    "postinstall": "npm run repackage"
+  }
+}
